@@ -1,4 +1,4 @@
-project(algorithms_test)
+project(containers_test)
 
 file(GLOB PROJECT_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*/*.cpp")
 

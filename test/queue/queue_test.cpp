@@ -1,10 +1,10 @@
-#include <data_structures/containers/queue.h>
+#include <containers/queue.h>
 
 #include <gtest/gtest.h>
 
 using queue_type = wingmann::containers::queue<int>;
 
-TEST(data_structures_contatiners, queue_empty)
+TEST(containers, queue_empty)
 {
     queue_type queue{};
 
@@ -12,7 +12,7 @@ TEST(data_structures_contatiners, queue_empty)
     EXPECT_TRUE(queue.is_empty());
 }
 
-TEST(data_structures_contatiners, queue_enqueue)
+TEST(containers, queue_enqueue)
 {
     queue_type queue{};
     queue.enqueue(5);
@@ -26,7 +26,7 @@ TEST(data_structures_contatiners, queue_enqueue)
     EXPECT_EQ(7, queue.size());
 }
 
-TEST(data_structures_contatiners, queue_dequeue)
+TEST(containers, queue_dequeue)
 {
     queue_type queue{};
     queue.enqueue(5);
@@ -44,7 +44,7 @@ TEST(data_structures_contatiners, queue_dequeue)
     EXPECT_EQ(3, queue.size());
 }
 
-TEST(data_structures_contatiners, queue_front)
+TEST(containers, queue_front)
 {
     queue_type queue{};
     queue.enqueue(5);

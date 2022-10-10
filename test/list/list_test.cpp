@@ -1,10 +1,10 @@
-#include <data_structures/containers/list.h>
+#include <containers/list.h>
 
 #include <gtest/gtest.h>
 
 using list_type = wingmann::containers::list<int>;
 
-TEST(data_structures_contatiners, list_empty)
+TEST(containers, list_empty)
 {
     list_type list{};
 
@@ -12,7 +12,7 @@ TEST(data_structures_contatiners, list_empty)
     EXPECT_EQ(0, list.size());
 }
 
-TEST(data_structures_contatiners, list_add_element)
+TEST(containers, list_add_element)
 {
     list_type list{};
     list.insert(7);
@@ -21,7 +21,7 @@ TEST(data_structures_contatiners, list_add_element)
     EXPECT_EQ(2, list.size());
 }
 
-TEST(data_structures_contatiners, list_remove_node)
+TEST(containers, list_remove_node)
 {
     list_type list{};
     list.insert(8);
@@ -36,7 +36,7 @@ TEST(data_structures_contatiners, list_remove_node)
     EXPECT_EQ(3, list.size());
 }
 
-TEST(data_structures_contatiners, list_get_front)
+TEST(containers, list_get_front)
 {
     list_type list{};
     list.insert(1);
@@ -46,7 +46,7 @@ TEST(data_structures_contatiners, list_get_front)
     EXPECT_EQ(1, list.front());
 }
 
-TEST(data_structures_contatiners, list_get_back)
+TEST(containers, list_get_back)
 {
     list_type list{};
     list.insert(1);
@@ -56,7 +56,7 @@ TEST(data_structures_contatiners, list_get_back)
     EXPECT_EQ(9, list.back());
 }
 
-TEST(data_structures_contatiners, list_destroy)
+TEST(containers, list_destroy)
 {
     list_type list{};
     list.insert(4);
