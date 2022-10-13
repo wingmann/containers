@@ -4,6 +4,7 @@
 /bin
 /out
 /target
+/lib
 
 # Personal IDE config files
 .idea
