@@ -9,8 +9,8 @@
 /// See LICENSE file for details.
 ///
 
-#ifndef WINGMANN_CONTAINERS_VECTOR
-#define WINGMANN_CONTAINERS_VECTOR
+#ifndef WINGMANN_CONTAINERS_VECTOR_VECTOR_H
+#define WINGMANN_CONTAINERS_VECTOR_VECTOR_H
 
 #include <iterators/random_access_iterator.h>
 
@@ -40,8 +40,8 @@ public:
     using const_alloc_reference  = const allocator_type&;
     using size_type              = std::size_t;
     using init_list_type         = std::initializer_list<Type>;
-    using iterator               = iterators::random_access_iterator<Type>;
-    using const_iterator         = iterators::random_access_iterator<const Type>;
+    using iterator               = wingmann::iterators::random_access_iterator<Type>;
+    using const_iterator         = wingmann::iterators::random_access_iterator<const Type>;
     using reverse_iterator       = std::reverse_iterator<iterator>;
     using const_reverse_iterator = std::reverse_iterator<const_iterator>;
     using difference_type        = std::ptrdiff_t;
@@ -85,12 +85,12 @@ public:
     }
 
     constexpr explicit vector(const_alloc_reference allocator) noexcept
-        : allocator_{allocator }, data_{}
+        : allocator_{allocator}, data_{}
     {
     }
 
     constexpr explicit vector(size_type length, const_alloc_reference allocator = Allocator())
-        : allocator_{allocator }
+        : allocator_{allocator}
     {
         allocate_and_copy_construct(length, length);
     }
@@ -98,13 +98,13 @@ public:
     constexpr explicit vector(
         size_type length,
         const_reference value,
-        const_alloc_reference allocator = Allocator()) : allocator_{allocator }
+        const_alloc_reference allocator = Allocator()) : allocator_{allocator}
     {
         allocate_and_copy_construct(length, length, value);
     }
 
     constexpr explicit vector(init_list_type values, const_alloc_reference allocator = Allocator())
-        : allocator_{allocator }
+        : allocator_{allocator}
     {
         allocate(values.size());
         construct_init_list(values);
@@ -126,14 +126,14 @@ public:
         }
     }
 
-    constexpr vector(const vector& other, const_alloc_reference allocator) : allocator_{allocator }
+    constexpr vector(const vector& other, const_alloc_reference allocator) : allocator_{allocator}
     {
         copy(other);
     }
 
     /// @brief Move constructor.
     constexpr vector(vector&& other, const_alloc_reference allocator) noexcept
-        : size_{other.size_ }, capacity_{other.capacity_ }, allocator_{std::move(allocator) }
+        : size_{other.size_}, capacity_{other.capacity_}, allocator_{std::move(allocator)}
     {
         if (allocator != other.get_allocator())
             uninitialized_alloc_move(std::move(other));
@@ -532,9 +532,9 @@ public:
 
         size_type first_position = std::distance(first, begin());
         size_type last_position = std::distance(last, begin());
-        size_type difference{ last_position - first_position };
+        size_type difference{ last_position - first_position};
 
-        for (size_type index{ first_position }; index < last_position; ++index)
+        for (size_type index{ first_position}; index < last_position; ++index)
             std::allocator_traits<allocator_type>::destroy(allocator_, data_ + index);
 
         if constexpr (std::is_nothrow_move_constructible<Type>::value)
@@ -560,14 +560,14 @@ public:
         auto temp_size = size();
 
         if (count < size()) {
-            for (size_type index{ count }; index < temp_size; ++index)
+            for (size_type index = count; index < temp_size; ++index)
                 pop_back();
         }
         else {
             if (count > capacity())
                 reallocate_strong_guarantee(count);
 
-            for (size_type index{ temp_size }; index < count; ++index)
+            for (size_type index = temp_size; index < count; ++index)
                 insert_end_strong_guarantee(value);
         }
     }
@@ -986,4 +986,4 @@ namespace pmr {
 
 } // namespace wingmann::containers
 
-#endif
+#endif // WINGMANN_CONTAINERS_VECTOR_VECTOR_H

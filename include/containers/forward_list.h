@@ -1,0 +1,6 @@
+#ifndef WINGMANN_CONTAINERS_FORWARD_LIST_H
+#define WINGMANN_CONTAINERS_FORWARD_LIST_H
+
+#include "forward_list/forward_list.h"
+
+#endif // WINGMANN_CONTAINERS_FORWARD_LIST_H
